@@ -12,7 +12,25 @@
             text-align: center; 
             padding: 20px; 
         }
-        h1 { color: #a970ff; margin-bottom: 5px; }
+
+        /* Kontener dla zdjęcia i tytułu */
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 5px;
+        }
+
+        .profile-pic {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%; /* Okrągłe zdjęcie profilowe */
+            border: 2px solid #a970ff;
+            object-fit: cover;
+        }
+
+        h1 { color: #a970ff; margin: 0; }
         .subtitle { color: #888; margin-bottom: 30px; font-size: 0.9em; }
         
         .grid { 
@@ -35,7 +53,6 @@
         }
         .card:hover { border-color: #444; background: #1f1f1f; }
         
-        /* Zdjęcie gra dźwięk */
         .card img { 
             width: 50px; 
             height: 50px; 
@@ -49,7 +66,6 @@
         
         .name { display: block; font-weight: bold; font-size: 1em; margin-bottom: 5px; color: #fff; }
         
-        /* Styl komendy do kopiowania */
         .cmd { 
             font-family: monospace; 
             color: #a970ff; 
@@ -57,13 +73,12 @@
             padding: 5px 8px; 
             border-radius: 4px; 
             font-size: 0.85em; 
-            cursor: copy; /* Kursor sugerujący kopiowanie */
+            cursor: copy; 
             border: 1px dashed #a970ff;
             transition: 0.2s;
         }
         .cmd:hover { background: #a970ff; color: #000; }
 
-        /* Styl notyfikacji (Toast) */
         #toast {
             visibility: hidden;
             min-width: 200px;
@@ -91,8 +106,68 @@
 </head>
 <body>
 
-    <h1>🔊 Soundboard Kiruyun</h1>
+    <div class="header-container">
+        <img src="kirun.jpg" alt="Kiruyun" class="profile-pic">
+        <h1>Soundboard Kiruyun</h1>
+    </div>
     <p class="subtitle">Kliknij obrazek, by słuchać. Kliknij fioletową ramkę, by skopiować komendę.</p>
 
     <div class="grid">
-        <div class
+        <div class="card">
+            <img src="img/echo.jpg" onclick="play('echo')" alt="echo">
+            <span class="name">Echo</span>
+            <span class="cmd" onclick="copyCmd('!graj echo')">!graj echo</span>
+        </div>
+
+        <div class="card">
+            <img src="img/gtfo.jpg" onclick="play('gtfo')" alt="gtfo">
+            <span class="name">GTFO</span>
+            <span class="cmd" onclick="copyCmd('!graj gtfo')">!graj gtfo</span>
+        </div>
+
+        <div class="card">
+            <img src="img/joker.jpg" onclick="play('joker')" alt="joker">
+            <span class="name">Joker</span>
+            <span class="cmd" onclick="copyCmd('!graj joker')">!graj joker</span>
+        </div>
+
+        <div class="card">
+            <img src="img/kurwa.jpg" onclick="play('kurwa')" alt="kurwa">
+            <span class="name">Kurwa</span>
+            <span class="cmd" onclick="copyCmd('!graj kurwa')">!graj kurwa</span>
+        </div>
+
+        <div class="card">
+            <img src="img/morda.jpg" onclick="play('morda')" alt="morda">
+            <span class="name">Morda</span>
+            <span class="cmd" onclick="copyCmd('!graj morda')">!graj morda</span>
+        </div>
+
+        <div class="card">
+            <img src="img/skrzypce.jpg" onclick="play('skrzypce')" alt="skrzypce">
+            <span class="name">Skrzypce</span>
+            <span class="cmd" onclick="copyCmd('!graj skrzypce')">!graj skrzypce</span>
+        </div>
+    </div>
+
+    <div id="toast">Skopiowano komendę!</div>
+
+    <script>
+        function play(file) {
+            let audio = new Audio(file + '.mp3');
+            audio.volume = 0.4;
+            audio.play();
+        }
+
+        function copyCmd(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                let toast = document.getElementById("toast");
+                toast.innerText = "Skopiowano: " + text;
+                toast.className = "show";
+                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
+            });
+        }
+    </script>
+
+</body>
+</html>
