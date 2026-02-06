@@ -7,10 +7,11 @@
     <style>
         body { 
             font-family: 'Segoe UI', Arial, sans-serif; 
-            background: #0f0f0f; 
+            background: #211633; /* TWOJE NOWE TŁO */
             color: #e0e0e0; 
             text-align: center; 
             padding: 20px; 
+            margin: 0;
         }
 
         /* Nagłówek: Zdjęcie + Tytuł */
@@ -19,6 +20,7 @@
             align-items: center;
             justify-content: center;
             gap: 15px;
+            margin-top: 20px;
             margin-bottom: 5px;
         }
 
@@ -28,21 +30,21 @@
             border-radius: 50%;
             border: 2px solid #a970ff;
             object-fit: cover;
+            box-shadow: 0 0 15px rgba(169, 112, 255, 0.4);
         }
 
-        h1 { color: #a970ff; margin: 0; }
-        .subtitle { color: #888; margin-bottom: 15px; font-size: 0.9em; }
+        h1 { color: #a970ff; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .subtitle { color: #b0a4c4; margin-bottom: 15px; font-size: 0.9em; }
 
-        /* Kontener na GIF-a pod napisami */
+        /* Kontener na GIF-a */
         .gif-wrapper {
             margin-bottom: 25px;
         }
 
         .dance-gif {
-            width: 120px; /* Nieco większy, skoro jest sam w linii */
+            width: 120px;
             height: auto;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(169, 112, 255, 0.2);
         }
         
         /* Siatka dźwięków */
@@ -55,8 +57,8 @@
         }
         
         .card { 
-            background: #1a1a1a; 
-            border: 1px solid #333; 
+            background: #2d2042; /* Lekko jaśniejszy fiolet dla kafelków, żeby były widoczne */
+            border: 1px solid #3d2d56; 
             border-radius: 10px; 
             padding: 15px; 
             transition: 0.2s; 
@@ -64,14 +66,18 @@
             flex-direction: column; 
             align-items: center; 
         }
-        .card:hover { border-color: #444; background: #1f1f1f; }
+        .card:hover { 
+            border-color: #a970ff; 
+            background: #36274e; 
+            transform: translateY(-3px);
+        }
         
         .card img { 
             width: 50px; 
             height: 50px; 
             border-radius: 6px; 
             margin-bottom: 10px; 
-            background: #333;
+            background: #1a1a1a;
             cursor: pointer;
             transition: transform 0.1s;
         }
@@ -82,7 +88,7 @@
         .cmd { 
             font-family: monospace; 
             color: #a970ff; 
-            background: #000; 
+            background: #160d24; 
             padding: 5px 8px; 
             border-radius: 4px; 
             font-size: 0.85em; 
@@ -90,13 +96,14 @@
             border: 1px dashed #a970ff;
             transition: 0.2s;
         }
-        .cmd:hover { background: #a970ff; color: #000; }
+        .cmd:hover { background: #a970ff; color: #160d24; }
 
+        /* Styl notyfikacji */
         #toast {
             visibility: hidden;
             min-width: 200px;
             background-color: #a970ff;
-            color: #fff;
+            color: #160d24;
             text-align: center;
             border-radius: 8px;
             padding: 12px;
@@ -106,6 +113,7 @@
             bottom: 30px;
             transform: translateX(-50%);
             font-weight: bold;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
         #toast.show {
             visibility: visible;
