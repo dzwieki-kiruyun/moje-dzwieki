@@ -13,7 +13,7 @@
             padding: 20px; 
         }
 
-        /* Kontener dla zdjęcia i tytułu */
+        /* Nagłówek: Zdjęcie + Tytuł */
         .header-container {
             display: flex;
             align-items: center;
@@ -25,14 +25,27 @@
         .profile-pic {
             width: 70px;
             height: 70px;
-            border-radius: 50%; /* Okrągłe zdjęcie profilowe */
+            border-radius: 50%;
             border: 2px solid #a970ff;
             object-fit: cover;
         }
 
         h1 { color: #a970ff; margin: 0; }
-        .subtitle { color: #888; margin-bottom: 30px; font-size: 0.9em; }
+        .subtitle { color: #888; margin-bottom: 15px; font-size: 0.9em; }
+
+        /* Kontener na GIF-a pod napisami */
+        .gif-wrapper {
+            margin-bottom: 25px;
+        }
+
+        .dance-gif {
+            width: 120px; /* Nieco większy, skoro jest sam w linii */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(169, 112, 255, 0.2);
+        }
         
+        /* Siatka dźwięków */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
@@ -93,7 +106,6 @@
             bottom: 30px;
             transform: translateX(-50%);
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
         #toast.show {
             visibility: visible;
@@ -110,7 +122,12 @@
         <img src="kirun.jpg" alt="Kiruyun" class="profile-pic">
         <h1>Soundboard Kiruyun</h1>
     </div>
+
     <p class="subtitle">Kliknij obrazek, by słuchać. Kliknij fioletową ramkę, by skopiować komendę.</p>
+
+    <div class="gif-wrapper">
+        <img src="cpundance.gif" alt="Dance GIF" class="dance-gif">
+    </div>
 
     <div class="grid">
         <div class="card">
