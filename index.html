@@ -14,7 +14,6 @@
             margin: 0;
         }
 
-        /* NAGŁÓWEK */
         .header-container {
             display: flex;
             align-items: center;
@@ -24,44 +23,39 @@
             margin-bottom: 5px;
         }
 
-        /* Profilowe (z głównego folderu) */
         .profile-pic {
             width: 70px;
             height: 70px;
             border-radius: 50%;
             border: 2px solid #a970ff;
             object-fit: cover;
-            box-shadow: 0 0 15px rgba(169, 112, 255, 0.4);
         }
 
-        h1 { color: #a970ff; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        h1 { color: #a970ff; margin: 0; }
         .subtitle { color: #b0a4c4; margin-bottom: 20px; font-size: 0.9em; }
 
-        /* OZDOBY (z głównego folderu) */
+        /* SEKCJA Z EMOTKĄ I GIFEM */
         .visuals-container {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 20px;
             margin-bottom: 30px;
-            flex-wrap: wrap;
         }
 
-        .dance-gif, .mascot-img {
+        .visuals-container img {
             width: 120px;
             height: 120px;
-            object-fit: cover;
             border-radius: 12px;
             border: 2px solid #a970ff;
-            box-shadow: 0 0 15px rgba(169, 112, 255, 0.2);
-            transition: transform 0.3s ease;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(169, 112, 255, 0.3);
         }
-        .mascot-img:hover { transform: scale(1.05) rotate(5deg); }
-        
+
         /* SIATKA DŹWIĘKÓW */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
             gap: 15px; 
             max-width: 900px; 
             margin: 0 auto; 
@@ -72,30 +66,92 @@
             border: 1px solid #3d2d56; 
             border-radius: 10px; 
             padding: 12px; 
-            transition: 0.2s; 
             display: flex; 
             flex-direction: column; 
             align-items: center;
+            transition: 0.2s;
         }
-        .card:hover { border-color: #a970ff; background: #36274e; transform: translateY(-3px); }
+        .card:hover { border-color: #a970ff; transform: translateY(-3px); }
         
-        /* ZDJĘCIA KAFELKÓW (z folderu img) */
         .card img { 
-            width: 55px; 
-            height: 55px; 
+            width: 60px; 
+            height: 60px; 
             border-radius: 8px; 
             margin-bottom: 8px; 
-            background: #1a1a1a;
             cursor: pointer;
             object-fit: cover;
         }
         
-        .name { display: block; font-weight: bold; font-size: 0.9em; margin-bottom: 6px; color: #fff; }
-        
+        .name { font-weight: bold; font-size: 0.9em; margin-bottom: 6px; }
         .cmd { 
             font-family: monospace; 
             color: #a970ff; 
             background: #160d24; 
             padding: 4px 6px; 
             border-radius: 4px; 
-            font-
+            font-size: 0.75em; 
+            cursor: copy;
+        }
+
+        #toast {
+            visibility: hidden;
+            background-color: #a970ff;
+            color: #160d24;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px;
+            position: fixed;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: bold;
+        }
+        #toast.show { visibility: visible; }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="kirun.jpg" class="profile-pic">
+        <h1>Soundboard Kiruyun</h1>
+    </div>
+    <p class="subtitle">Kliknij obrazek, by słuchać. Kliknij komendę, by skopiować.</p>
+
+    <div class="visuals-container">
+        <img src="cpundance.gif" alt="Dance">
+        <img src="kamilek_mozg.jpg" alt="Mózg">
+    </div>
+
+    <div class="grid">
+        <script>
+            const sounds = ['asmr', 'avemati', 'cricket', 'echo', 'gtfo', 'halo', 'joker', 'kurwa', 'mlekosz', 'morda', 'skrzypce'];
+            const grid = document.querySelector('.grid');
+            
+            sounds.forEach(id => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <img src="img/${id}.jpg" onclick="play('${id}')" onerror="this.src='kirun.jpg'">
+                        <span class="name">${id.toUpperCase()}</span>
+                        <span class="cmd" onclick="copyCmd('!graj ${id}')">!graj ${id}</span>
+                    </div>
+                `;
+            });
+
+            function play(file) {
+                new Audio(file + '.mp3').play();
+            }
+
+            function copyCmd(text) {
+                navigator.clipboard.writeText(text);
+                let t = document.getElementById("toast");
+                t.innerText = "Skopiowano: " + text;
+                t.className = "show";
+                setTimeout(() => t.className = "", 2000);
+            }
+        </script>
+    </div>
+
+    <div id="toast">Skopiowano!</div>
+
+</body>
+</html>
