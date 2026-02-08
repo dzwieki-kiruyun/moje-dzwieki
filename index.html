@@ -24,7 +24,7 @@
             margin-bottom: 5px;
         }
 
-        /* Profilowe jest w głównym folderze, więc ścieżka bez "img/" */
+        /* Profilowe (z głównego folderu) */
         .profile-pic {
             width: 70px;
             height: 70px;
@@ -37,7 +37,7 @@
         h1 { color: #a970ff; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .subtitle { color: #b0a4c4; margin-bottom: 20px; font-size: 0.9em; }
 
-        /* OZDOBY (GIF + MÓZG) - są w głównym folderze */
+        /* OZDOBY (z głównego folderu) */
         .visuals-container {
             display: flex;
             justify-content: center;
@@ -56,7 +56,6 @@
             box-shadow: 0 0 15px rgba(169, 112, 255, 0.2);
             transition: transform 0.3s ease;
         }
-
         .mascot-img:hover { transform: scale(1.05) rotate(5deg); }
         
         /* SIATKA DŹWIĘKÓW */
@@ -65,4 +64,38 @@
             grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); 
             gap: 15px; 
             max-width: 900px; 
-            margin: 0 auto;
+            margin: 0 auto; 
+        }
+        
+        .card { 
+            background: #2d2042; 
+            border: 1px solid #3d2d56; 
+            border-radius: 10px; 
+            padding: 12px; 
+            transition: 0.2s; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+        }
+        .card:hover { border-color: #a970ff; background: #36274e; transform: translateY(-3px); }
+        
+        /* ZDJĘCIA KAFELKÓW (z folderu img) */
+        .card img { 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 8px; 
+            margin-bottom: 8px; 
+            background: #1a1a1a;
+            cursor: pointer;
+            object-fit: cover;
+        }
+        
+        .name { display: block; font-weight: bold; font-size: 0.9em; margin-bottom: 6px; color: #fff; }
+        
+        .cmd { 
+            font-family: monospace; 
+            color: #a970ff; 
+            background: #160d24; 
+            padding: 4px 6px; 
+            border-radius: 4px; 
+            font-
