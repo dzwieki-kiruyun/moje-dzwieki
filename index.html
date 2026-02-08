@@ -24,6 +24,7 @@
             margin-bottom: 5px;
         }
 
+        /* Profilowe jest w głównym folderze, więc ścieżka bez "img/" */
         .profile-pic {
             width: 70px;
             height: 70px;
@@ -36,7 +37,7 @@
         h1 { color: #a970ff; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .subtitle { color: #b0a4c4; margin-bottom: 20px; font-size: 0.9em; }
 
-        /* OZDOBY (GIF + MÓZG) */
+        /* OZDOBY (GIF + MÓZG) - są w głównym folderze */
         .visuals-container {
             display: flex;
             justify-content: center;
@@ -64,124 +65,4 @@
             grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); 
             gap: 15px; 
             max-width: 900px; 
-            margin: 0 auto; 
-        }
-        
-        .card { 
-            background: #2d2042; 
-            border: 1px solid #3d2d56; 
-            border-radius: 10px; 
-            padding: 12px; 
-            transition: 0.2s; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;
-        }
-        .card:hover { border-color: #a970ff; background: #36274e; transform: translateY(-3px); }
-        
-        .card img { 
-            width: 55px; 
-            height: 55px; 
-            border-radius: 8px; 
-            margin-bottom: 8px; 
-            background: #1a1a1a;
-            cursor: pointer;
-            object-fit: cover;
-        }
-        
-        .name { display: block; font-weight: bold; font-size: 0.9em; margin-bottom: 6px; color: #fff; }
-        
-        .cmd { 
-            font-family: monospace; 
-            color: #a970ff; 
-            background: #160d24; 
-            padding: 4px 6px; 
-            border-radius: 4px; 
-            font-size: 0.75em; 
-            cursor: copy; 
-            border: 1px dashed #a970ff;
-        }
-
-        /* NOTYFIKACJA */
-        #toast {
-            visibility: hidden;
-            min-width: 180px;
-            background-color: #a970ff;
-            color: #160d24;
-            text-align: center;
-            border-radius: 8px;
-            padding: 10px;
-            position: fixed;
-            z-index: 100;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            font-weight: bold;
-        }
-        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2s; }
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-    </style>
-</head>
-<body>
-
-    <div class="header-container">
-        <img src="kirun.jpg" alt="Profilowe" class="profile-pic">
-        <h1>Soundboard Kiruyun</h1>
-    </div>
-
-    <p class="subtitle">Kliknij obrazek, by słuchać. Kliknij komendę, by skopiować.</p>
-
-    <div class="visuals-container">
-        <img src="cpundance.gif" alt="Dance" class="dance-gif">
-        <img src="kamilek_mozg.jpg" alt="Mózg" class="mascot-img">
-    </div>
-
-    <div class="grid">
-        <script>
-            const sounds = [
-                { id: 'asmr', name: 'ASMR' },
-                { id: 'avemati', name: 'Ave Mati' },
-                { id: 'cricket', name: 'Cricket' },
-                { id: 'echo', name: 'Echo' },
-                { id: 'gtfo', name: 'GTFO' },
-                { id: 'halo', name: 'Halo' },
-                { id: 'joker', name: 'Joker' },
-                { id: 'kurwa', name: 'Kurwa' },
-                { id: 'mlekosz', name: 'Mlekosz' },
-                { id: 'morda', name: 'Morda' },
-                { id: 'skrzypce', name: 'Skrzypce' }
-            ];
-
-            const grid = document.querySelector('.grid');
-            sounds.forEach(s => {
-                grid.innerHTML += `
-                    <div class="card">
-                        <img src="${s.id}.jpg" onclick="play('${s.id}')" alt="${s.name}">
-                        <span class="name">${s.name}</span>
-                        <span class="cmd" onclick="copyCmd('!graj ${s.id}')">!graj ${s.id}</span>
-                    </div>
-                `;
-            });
-
-            function play(file) {
-                let audio = new Audio(file + '.mp3');
-                audio.volume = 0.4;
-                audio.play().catch(e => console.log("Brak pliku audio: " + file));
-            }
-
-            function copyCmd(text) {
-                navigator.clipboard.writeText(text).then(() => {
-                    let toast = document.getElementById("toast");
-                    toast.innerText = "Skopiowano: " + text;
-                    toast.className = "show";
-                    setTimeout(() => { toast.className = toast.className.replace("show", ""), 2500 });
-                });
-            }
-        </script>
-    </div>
-
-    <div id="toast">Skopiowano komendę!</div>
-
-</body>
-</html>
+            margin: 0 auto;
