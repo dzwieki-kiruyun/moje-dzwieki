@@ -14,7 +14,7 @@
             margin: 0;
         }
 
-        /* --- NAGŁÓWEK --- */
+        /* NAGŁÓWEK */
         .header-container {
             display: flex;
             align-items: center;
@@ -36,42 +36,32 @@
         h1 { color: #a970ff; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
         .subtitle { color: #b0a4c4; margin-bottom: 20px; font-size: 0.9em; }
 
-        /* --- SEKCJA WIZUALNA (GIF + EMOTKA) --- */
+        /* OZDOBY (GIF + MÓZG) */
         .visuals-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px; /* Odstęp między gifem a emotką */
+            gap: 20px;
             margin-bottom: 30px;
-            flex-wrap: wrap; /* Na małym telefonie ułoży jedno pod drugim */
+            flex-wrap: wrap;
         }
 
-        .dance-gif {
+        .dance-gif, .mascot-img {
             width: 120px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        /* Styl dla nowej emotki */
-        .mascot-img {
-            width: 120px;  /* Zmniejszamy 1000px do 120px */
             height: 120px;
             object-fit: cover;
-            border-radius: 15px;
+            border-radius: 12px;
             border: 2px solid #a970ff;
-            box-shadow: 0 0 15px rgba(169, 112, 255, 0.3);
-            transition: transform 0.3s ease; /* Płynna animacja */
+            box-shadow: 0 0 15px rgba(169, 112, 255, 0.2);
+            transition: transform 0.3s ease;
         }
 
-        .mascot-img:hover {
-            transform: scale(1.05) rotate(5deg); /* Lekki obrót po najechaniu */
-        }
+        .mascot-img:hover { transform: scale(1.05) rotate(5deg); }
         
-        /* --- SIATKA DŹWIĘKÓW --- */
+        /* SIATKA DŹWIĘKÓW */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); 
             gap: 15px; 
             max-width: 900px; 
             margin: 0 auto; 
@@ -86,21 +76,20 @@
             display: flex; 
             flex-direction: column; 
             align-items: center;
-            min-height: 100px;
         }
         .card:hover { border-color: #a970ff; background: #36274e; transform: translateY(-3px); }
         
         .card img { 
-            width: 50px; 
-            height: 50px; 
-            border-radius: 6px; 
+            width: 55px; 
+            height: 55px; 
+            border-radius: 8px; 
             margin-bottom: 8px; 
             background: #1a1a1a;
             cursor: pointer;
             object-fit: cover;
         }
         
-        .name { display: block; font-weight: bold; font-size: 0.95em; margin-bottom: 6px; color: #fff; }
+        .name { display: block; font-weight: bold; font-size: 0.9em; margin-bottom: 6px; color: #fff; }
         
         .cmd { 
             font-family: monospace; 
@@ -112,105 +101,7 @@
             cursor: copy; 
             border: 1px dashed #a970ff;
         }
-        .cmd:hover { background: #a970ff; color: #160d24; }
 
-        /* --- NOTYFIKACJA --- */
+        /* NOTYFIKACJA */
         #toast {
             visibility: hidden;
-            min-width: 180px;
-            background-color: #a970ff;
-            color: #160d24;
-            text-align: center;
-            border-radius: 8px;
-            padding: 10px;
-            position: fixed;
-            z-index: 100;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-            font-weight: bold;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-        }
-        #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2s; }
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
-    </style>
-</head>
-<body>
-
-    <div class="header-container">
-        <img src="kirun.jpg" alt="Kiruyun" class="profile-pic">
-        <h1>Soundboard Kiruyun</h1>
-    </div>
-
-    <p class="subtitle">Kliknij obrazek, by słuchać. Kliknij ramkę, by skopiować komendę.</p>
-
-    <div class="visuals-container">
-        <img src="cpundance.gif" alt="Dance GIF" class="dance-gif">
-        <img src="kamilek_mozg.jpg" alt="Kamilek Mózg" class="mascot-img">
-    </div>
-
-    <div class="grid">
-        <div class="card">
-            <img src="img/echo.jpg" onclick="play('echo')" alt="echo">
-            <span class="name">Echo</span>
-            <span class="cmd" onclick="copyCmd('!graj echo')">!graj echo</span>
-        </div>
-
-        <div class="card">
-            <img src="img/gtfo.jpg" onclick="play('gtfo')" alt="gtfo">
-            <span class="name">GTFO</span>
-            <span class="cmd" onclick="copyCmd('!graj gtfo')">!graj gtfo</span>
-        </div>
-
-        <div class="card">
-            <img src="img/joker.jpg" onclick="play('joker')" alt="joker">
-            <span class="name">Joker</span>
-            <span class="cmd" onclick="copyCmd('!graj joker')">!graj joker</span>
-        </div>
-
-        <div class="card">
-            <img src="img/kurwa.jpg" onclick="play('kurwa')" alt="kurwa">
-            <span class="name">Kurwa</span>
-            <span class="cmd" onclick="copyCmd('!graj kurwa')">!graj kurwa</span>
-        </div>
-
-        <div class="card">
-            <img src="img/morda.jpg" onclick="play('morda')" alt="morda">
-            <span class="name">Morda</span>
-            <span class="cmd" onclick="copyCmd('!graj morda')">!graj morda</span>
-        </div>
-
-        <div class="card">
-            <img src="img/skrzypce.jpg" onclick="play('skrzypce')" alt="skrzypce">
-            <span class="name">Skrzypce</span>
-            <span class="cmd" onclick="copyCmd('!graj skrzypce')">!graj skrzypce</span>
-        </div>
-
-        <div class="card">
-            <img src="img/avemati.jpg" onclick="play('avemati')" alt="avemati">
-            <span class="name">Ave Mati</span>
-            <span class="cmd" onclick="copyCmd('!graj avemati')">!graj avemati</span>
-        </div>
-    </div>
-
-    <div id="toast">Skopiowano komendę!</div>
-
-    <script>
-        function play(file) {
-            let audio = new Audio(file + '.mp3');
-            audio.volume = 0.4;
-            audio.play().catch(e => console.log("Błąd odtwarzania pliku: " + file + ".mp3"));
-        }
-
-        function copyCmd(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                let toast = document.getElementById("toast");
-                toast.innerText = "Skopiowano: " + text;
-                toast.className = "show";
-                setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2500);
-            });
-        }
-    </script>
-</body>
-</html>
